@@ -6,13 +6,12 @@ export async function loginRequest(name, password){
         name,
         password
     }); 
-    // console.log(result.data);
+    console.log(result.data);
     // if(result.data){
-       
     //     return result.data;
     // }
     // else{
     //     return result.data;
     // }
-    return result.data
+    // return result.data
 }

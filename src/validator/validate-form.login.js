@@ -1,6 +1,4 @@
-import { useFormik } from "formik";
 import { regexName } from "../constant/regex.constant";
-import { loginRequest } from "../axios/axios.login";
 
 export function validateName(name){
     if(!name){
