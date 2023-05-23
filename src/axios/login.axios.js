@@ -1,18 +1,18 @@
 import axios from "axios";
 import { serverUrl } from "../constant/server.constant";
+import { redirect } from "react-router-dom";
 
-export async function loginRequest(name, password) {
-  console.log(serverUrl + "admin/login");
-  const result = await axios.post("http://localhost:8000admin/login", {
-    name,
-    password,
-  });
-  console.log(result);
-  // if(result.data){
-  //     return result.data;
-  // }
-  // else{
-  //     return result.data;
-  // }
-  // return result.data
+export async function loginRequest(name, password){
+    const dataServer=await axios.post(serverUrl+'/admin/login',{
+        name,
+        password
+    }); 
+    const {token}=dataServer.data.result;
+    if(token){
+        localStorage.setItem("token",token);
+        window.location.replace('/');
+    }
+    else{
+        return dataServer.data.meta.error;
+    }
 }

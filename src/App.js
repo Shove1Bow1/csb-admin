@@ -12,13 +12,13 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          {/* <Route path="login" element={<LoginForm />} /> */}
+          <Route path="login" element={<LoginForm />} />
           <Route
             path="/"
             element={
-              // <CheckTokenJWT>
-              <HomePage />
-              // </CheckTokenJWT>
+              <CheckTokenJWT>
+                <HomePage />
+              </CheckTokenJWT>
             }
           />
         </Routes>
