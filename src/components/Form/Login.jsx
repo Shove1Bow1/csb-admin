@@ -1,7 +1,10 @@
-import { Field, Form, Formik } from "formik"
-import { loginRequest } from "../../axios/login.axios"
-import { validateName, validatePassword } from "../../validator/validate-form.login"
-import './Form.sass'
+import { Field, Form, Formik } from "formik";
+import { loginRequest } from "../../axios/login.axios";
+import {
+  validateName,
+  validatePassword,
+} from "../../validator/validate-form.login";
+import "./Form.sass";
 export const LoginForm = () => {
     return (
         <Formik
