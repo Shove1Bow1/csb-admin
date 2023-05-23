@@ -1,7 +1,10 @@
-import { Field, Form, Formik } from "formik"
-import { loginRequest } from "../../axios/login.axios"
-import { validateName, validatePassword } from "../../validator/validate-form.login"
-import './Form.sass'
+import { Field, Form, Formik } from "formik";
+import { loginRequest } from "../../axios/login.axios";
+import {
+  validateName,
+  validatePassword,
+} from "../../validator/validate-form.login";
+import "./Form.sass";
 export const LoginForm = () => {
     return (
         <Formik
@@ -10,12 +13,13 @@ export const LoginForm = () => {
                 password: '',
                 serverError:'',
             }}
-            onSubmit={(values) => {
+            onSubmit={async (values) => {
                 const error=validateName(values.name)||validatePassword(values.password);
                 if(error){
+                    console.log(error);
                     return;
                 }
-                const data=loginRequest(values.name,values.password);
+                const data=await loginRequest(values.name,values.password);
                 console.log(data.result);
             }}
         >

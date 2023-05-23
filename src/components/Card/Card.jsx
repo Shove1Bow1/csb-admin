@@ -13,8 +13,9 @@ const Card = (props) => {
   return (
     <AnimateSharedLayout>
       {expanded ? (
-        <ExpandedCard param={props} setExpanded={() => setExpanded(false)} />
+        <div></div>
       ) : (
+        // <ExpandedCard param={props} setExpanded={() => setExpanded(false)} />
         <CompactCard param={props} setExpanded={() => setExpanded(true)} />
       )}
     </AnimateSharedLayout>
@@ -32,7 +33,6 @@ function CompactCard({ param, setExpanded }) {
         boxShadow: param.color.boxShadow,
       }}
       layoutId="expandableCard"
-      onClick={setExpanded}
     >
       <div className="radialBar">
         <CircularProgressbar
@@ -43,8 +43,7 @@ function CompactCard({ param, setExpanded }) {
       </div>
       <div className="detail">
         <Png />
-        <span>${param.value}</span>
-        <span>Last 24 hours</span>
+        <span>{param.value}</span>
       </div>
     </motion.div>
   );
@@ -112,14 +111,14 @@ function ExpandedCard({ param, setExpanded }) {
       }}
       layoutId="expandableCard"
     >
-      <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
+      {/* <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
         <UilTimes onClick={setExpanded} />
       </div>
-        <span>{param.title}</span>
+      <span>{param.title}</span>
       <div className="chartContainer">
         <Chart options={data.options} series={param.series} type="area" />
       </div>
-      <span>Last 24 hours</span>
+      <span>Last 24 hours</span> */}
     </motion.div>
   );
 }
