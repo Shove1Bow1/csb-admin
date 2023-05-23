@@ -10,12 +10,13 @@ export const LoginForm = () => {
                 password: '',
                 serverError:'',
             }}
-            onSubmit={(values) => {
+            onSubmit={async (values) => {
                 const error=validateName(values.name)||validatePassword(values.password);
                 if(error){
+                    console.log(error);
                     return;
                 }
-                const data=loginRequest(values.name,values.password);
+                const data=await loginRequest(values.name,values.password);
                 console.log(data.result);
             }}
         >
