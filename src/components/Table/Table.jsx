@@ -45,7 +45,7 @@ export default function BasicTable() {
   React.useEffect(() => {
     axios
       .get(
-        "http://localhost:8000/phone-numbers/spammers/top-ten/recent-reports",
+        "https://api.call-spam-blocker.xyz/phone-numbers/spammers/top-ten/recent-reports",
         {
           headers: { authorization: "spambl0ckerAuthorization2k1rbyp0wer" },
         }
@@ -84,7 +84,7 @@ export default function BasicTable() {
                     </TableCell>
                     <TableCell align="left">{row._id}</TableCell>
                     <TableCell align="left">
-                      {dayjs.unix(row.createAt).format("DD-MM-YYYY").toString()}
+                      {dayjs(row.createAt).format("DD-MM-YYYY")}
                     </TableCell>
                     <TableCell align="left">
                       <span
