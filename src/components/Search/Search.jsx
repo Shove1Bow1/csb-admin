@@ -63,6 +63,7 @@ export default function Search() {
         }
       )
       .then((data) => {
+        console.log(data.data.result);
         setData(data.data.result);
       });
   };
@@ -130,7 +131,7 @@ export default function Search() {
                 <TableCell align="left">Rerort</TableCell>
                 <TableCell align="left">Tracked</TableCell>
                 <TableCell align="left">Status</TableCell>
-                <TableCell align="left"></TableCell>
+                <TableCell align="left">UnBan</TableCell>
               </TableRow>
             </TableHead>
             <TableBody style={{ color: "white" }}>
@@ -165,35 +166,37 @@ export default function Search() {
                         <TableCell align="left">
                           {row.callTracker.length}
                         </TableCell>
-                        <TableCell
-                          onClick={() => {
-                            axios
-                              .patch(
-                                "https://api.call-spam-blocker.xyz/phone-numbers/detail/" +
-                                  item.id,
-                                {
-                                  headers: {
-                                    authorization:
-                                      "spambl0ckerAuthorization2k1rbyp0wer",
-                                  },
-                                }
-                              )
-                              .then((data) => {
-                                const { result } = data.data;
-                                setModalHideShow();
-                                setContents(
-                                  showPhoneItem(result, navigation.navigation)
-                                );
-                              });
-                          }}
-                          align="left"
-                        >
+                        <TableCell align="left">
                           <span
                             className="status"
                             style={makeStyle(row.status)}
                           >
                             {row.status}
                           </span>
+                        </TableCell>
+                        <TableCell align="left">
+                          {row.stateUnban && (
+                            <Button
+                              onClick={() => {
+                                axios
+                                  .patch(
+                                    "https://api.call-spam-blocker.xyz/phone-numbers/detail/" +
+                                      row._id,
+                                    {
+                                      headers: {
+                                        authorization:
+                                          "spambl0ckerAuthorization2k1rbyp0wer",
+                                      },
+                                    }
+                                  )
+                                  .finally(() => {
+                                    window.location.reload(true);
+                                  });
+                              }}
+                            >
+                              Unban
+                            </Button>
+                          )}
                         </TableCell>
                       </TableRow>
                     );
