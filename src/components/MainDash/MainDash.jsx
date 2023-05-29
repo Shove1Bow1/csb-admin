@@ -9,14 +9,7 @@ const MainDash = (props) => {
     <div className="MainDash">
       {selected === 0 && (
         <div>
-          <h1>Dashboard</h1>
           <Cards />
-          <Table />
-        </div>
-      )}
-      {selected === 1 && (
-        <div>
-          <h1>Phone Number</h1>
           <Search />
         </div>
       )}

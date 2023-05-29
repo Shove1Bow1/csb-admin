@@ -1,6 +1,8 @@
 import {
   Autocomplete,
   Button,
+  MenuItem,
+  Select,
   Table,
   TableBody,
   TableContainer,
@@ -10,7 +12,7 @@ import {
   TextField,
   debounce,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Export from "@iconscout/react-unicons/icons/uil-import";
 import Close from "@iconscout/react-unicons/icons/uil-multiply";
 
@@ -24,16 +26,19 @@ import { CSVLink } from "react-csv";
 const makeStyle = (status) => {
   if (status === "unknown") {
     return {
+      width: "100%",
       background: "rgb(145 254 159 / 47%)",
       color: "green",
     };
   } else if (status === "spammer") {
     return {
+      width: "100%",
       background: "#ffadad8f",
       color: "red",
     };
   } else {
     return {
+      width: "100%",
       background: "#59bfff",
       color: "white",
     };
@@ -45,25 +50,30 @@ export default function Search() {
   const [page, setPage] = React.useState(0);
   const rowsPerPage = 10;
 
+  const [valueStatus, setValueStatus] = useState(3);
   const [showHideModal, setShowHideModal] = React.useState(null);
+
+  const [loading, setLoading] = useState(false);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
   const fetchData = (value) => {
+    setLoading(false);
     if (value === "") value = 0;
+
     axios
       .get(
         "https://api.call-spam-blocker.xyz/phone-numbers/" +
           value +
-          "/suggest/3",
+          "/suggest/" +
+          valueStatus,
         {
           headers: { authorization: "spambl0ckerAuthorization2k1rbyp0wer" },
         }
       )
       .then((data) => {
-        console.log(data.data.result);
         setData(data.data.result);
       });
   };
@@ -103,11 +113,30 @@ export default function Search() {
           }}
           label="Search"
         />
-        <CSVLink data={exportData} filename="ExportPhoneNumber">
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          label="Status"
+          defaultValue={3}
+          value={valueStatus}
+          onChange={(e) => {
+            setValueStatus(e.target.value);
+          }}
+          sx={{ marginBottom: "15px", marginRight: "5px", width: "300px" }}
+        >
+          <MenuItem value={3}>Both</MenuItem>
+          <MenuItem value={4}>Potential-Spammer</MenuItem>
+          <MenuItem value={5}>Spammer</MenuItem>
+        </Select>
+        <CSVLink
+          data={exportData}
+          style={{ heigth: "200px" }}
+          filename="ExportPhoneNumber"
+        >
           <Button
             variant="outlined"
             startIcon={<Export />}
-            sx={{ marginBottom: "15px" }}
+            sx={{ marginBottom: "15px", height: "80%" }}
           >
             Export
           </Button>
@@ -119,10 +148,7 @@ export default function Search() {
           component={Paper}
           style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
         >
-          <Table
-            sx={{ minWidth: 650, maxHeight: 200 }}
-            aria-label="simple table"
-          >
+          <Table sx={{ minWidth: 650, maxHeight: 0 }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Phone Number</TableCell>
@@ -131,7 +157,6 @@ export default function Search() {
                 <TableCell align="left">Rerort</TableCell>
                 <TableCell align="left">Tracked</TableCell>
                 <TableCell align="left">Status</TableCell>
-                <TableCell align="left">UnBan</TableCell>
               </TableRow>
             </TableHead>
             <TableBody style={{ color: "white" }}>
@@ -174,30 +199,6 @@ export default function Search() {
                             {row.status}
                           </span>
                         </TableCell>
-                        <TableCell align="left">
-                          {row.stateUnban && (
-                            <Button
-                              onClick={() => {
-                                axios
-                                  .patch(
-                                    "https://api.call-spam-blocker.xyz/phone-numbers/detail/" +
-                                      row._id,
-                                    {
-                                      headers: {
-                                        authorization:
-                                          "spambl0ckerAuthorization2k1rbyp0wer",
-                                      },
-                                    }
-                                  )
-                                  .finally(() => {
-                                    window.location.reload(true);
-                                  });
-                              }}
-                            >
-                              Unban
-                            </Button>
-                          )}
-                        </TableCell>
                       </TableRow>
                     );
                   })}
@@ -212,7 +213,7 @@ export default function Search() {
           />
         </TableContainer>
       </div>
-      {showHideModal && (
+      {/* {showHideModal && (
         <div
           style={{
             position: "absolute",
@@ -370,7 +371,7 @@ export default function Search() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
