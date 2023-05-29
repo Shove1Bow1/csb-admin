@@ -54,9 +54,14 @@ export default function Search() {
   const fetchData = (value) => {
     if (value === "") value = 0;
     axios
-      .get("http://localhost:8000/phone-numbers/" + value + "/suggest/3", {
-        headers: { authorization: "spambl0ckerAuthorization2k1rbyp0wer" },
-      })
+      .get(
+        "https://api.call-spam-blocker.xyz/phone-numbers/" +
+          value +
+          "/suggest/3",
+        {
+          headers: { authorization: "spambl0ckerAuthorization2k1rbyp0wer" },
+        }
+      )
       .then((data) => {
         setData(data.data.result);
       });
@@ -125,6 +130,7 @@ export default function Search() {
                 <TableCell align="left">Rerort</TableCell>
                 <TableCell align="left">Tracked</TableCell>
                 <TableCell align="left">Status</TableCell>
+                <TableCell align="left"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody style={{ color: "white" }}>
@@ -159,7 +165,29 @@ export default function Search() {
                         <TableCell align="left">
                           {row.callTracker.length}
                         </TableCell>
-                        <TableCell align="left">
+                        <TableCell
+                          onClick={() => {
+                            axios
+                              .patch(
+                                "https://api.call-spam-blocker.xyz/phone-numbers/detail/" +
+                                  item.id,
+                                {
+                                  headers: {
+                                    authorization:
+                                      "spambl0ckerAuthorization2k1rbyp0wer",
+                                  },
+                                }
+                              )
+                              .then((data) => {
+                                const { result } = data.data;
+                                setModalHideShow();
+                                setContents(
+                                  showPhoneItem(result, navigation.navigation)
+                                );
+                              });
+                          }}
+                          align="left"
+                        >
                           <span
                             className="status"
                             style={makeStyle(row.status)}
