@@ -13,6 +13,9 @@ const MainDash = (props) => {
           <Search />
         </div>
       )}
+      {selected === 1 && (
+        <Table />
+      )}
     </div>
   );
 };

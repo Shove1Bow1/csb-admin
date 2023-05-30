@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { LoginForm } from "./components/CustomerReview/Form/Login";
+import { LoginForm } from "./components/Form/Login";
 import MainDash from "./components/MainDash/MainDash";
 import RightSide from "./components/RigtSide/RightSide";
 import Sidebar from "./components/Sidebar";
@@ -35,7 +35,6 @@ export function HomePage() {
     <div className="AppGlass">
       <Sidebar selected={selected} setSelected={setSelectedItem} />
       <MainDash selected={selected} />
-      {/* <RightSide /> */}{" "}
     </div>
   );
 }

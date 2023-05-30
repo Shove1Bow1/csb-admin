@@ -151,10 +151,10 @@ export default function Search() {
           <Table sx={{ minWidth: 650, maxHeight: 0 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Phone Number</TableCell>
                 <TableCell align="left">ID</TableCell>
+                <TableCell>Phone Number</TableCell>
                 <TableCell align="left">Create Date</TableCell>
-                <TableCell align="left">Rerort</TableCell>
+                <TableCell align="left">Report</TableCell>
                 <TableCell align="left">Tracked</TableCell>
                 <TableCell align="left">Status</TableCell>
               </TableRow>
@@ -171,6 +171,7 @@ export default function Search() {
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
+                        <TableCell align="left">{row._id}</TableCell>
                         <TableCell
                           onClick={() => {
                             setShowHideModal(index + 1);
@@ -181,7 +182,6 @@ export default function Search() {
                         >
                           {row.phoneNumber}
                         </TableCell>
-                        <TableCell align="left">{row._id}</TableCell>
                         <TableCell align="left">
                           {dayjs(row.createAt).format("DD-MM-YYYY").toString()}
                         </TableCell>
