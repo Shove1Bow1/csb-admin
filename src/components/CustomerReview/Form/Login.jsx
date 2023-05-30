@@ -25,12 +25,12 @@ export const LoginForm = () => {
       {({ errors, touched, isValidating, validateForm }) => {
         return (
           <Form className="formik">
-            <legend className="formik-legend">PAGE ADMIN CSB</legend>
+            <legend className="formik-legend">ADMIN PAGE <br/> CALL SPAM BLOCKER</legend>
             <div className="formik-block">
-              <label className="formik-label">Admin name</label>
+              <label className="formik-label">admin name</label>
               <Field
                 name="name"
-                placeholder="Admin name"
+                placeholder="admin name"
                 type="text"
                 validate={validateName}
                 className="formik-field"
@@ -40,10 +40,10 @@ export const LoginForm = () => {
               {touched.name && errors.name ? errors.name : null}
             </span>
             <div className="formik-block">
-              <label className="formik-label">Password</label>
+              <label className="formik-label">password</label>
               <Field
                 name="password"
-                placeholder="Password"
+                placeholder="password"
                 type="password"
                 validate={validatePassword}
                 className="formik-field"

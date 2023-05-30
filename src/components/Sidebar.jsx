@@ -5,6 +5,7 @@ import { UilSignOutAlt } from "@iconscout/react-unicons";
 import { SidebarData } from "../Data/Data";
 import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
+import { logOut } from "../utils/log-out";
 
 const Sidebar = (props) => {
   const { selected, setSelected } = props;
@@ -59,6 +60,7 @@ const Sidebar = (props) => {
           <div
             className="menuItem"
             style={{ display: "flex", fontWeight: 800, flexDirection: "row" }}
+            onClick={logOut}
           >
             <UilSignOutAlt /> Log Out
           </div>

@@ -20,11 +20,11 @@ export function validatePassword(password){
     if(!password){
         return 'Password need to be filled';
     }
-    if(password.length<3){
-        return 'Password is shorter than 3 characters'
+    if(password.length<5){
+        return 'Password is shorter than 5 characters'
     }
     if(password.length>50){
-        return 'Password is longer than 50 characters'
+        return 'Password is no longer than 50 characters'
     }
 }
 
