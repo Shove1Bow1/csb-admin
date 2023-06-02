@@ -4,7 +4,7 @@ import {
   UilClipboardAlt,
   UilUsersAlt,
   UilPackage,
-  UilChart,
+  UilPhone,
   UilSignOutAlt,
 } from "@iconscout/react-unicons";
 
@@ -25,7 +25,7 @@ export const SidebarData = [
   },
   {
     icon: UilClipboardAlt,
-    heading: "ListPhone",
+    heading: "Unban List",
   },
 ];
 
@@ -34,32 +34,16 @@ export const cardsData = [
   {
     title: "6 mounth",
     color: {
-      backGround: "linear-gradient(180deg, #bb67ff 0%, #c484f3 100%)",
+      backGround: "#008b8b",
       boxShadow: "0px 10px 20px 0px #e0c6f5",
     },
     barValue: 81,
     value: "811",
-    png: UilMoneyWithdrawal,
+    png: UilPhone,
     series: [
       {
-        name: "Sales",
-        data: [31, 40, 28, 51, 42, 109, 100],
-      },
-    ],
-  },
-  {
-    title: "7 day",
-    color: {
-      backGround: "linear-gradient(180deg, #FF919D 0%, #FC929D 100%)",
-      boxShadow: "0px 10px 20px 0px #FDC0C7",
-    },
-    barValue: 3,
-    value: "28",
-    png: UilMoneyWithdrawal,
-    series: [
-      {
-        name: "Revenue",
-        data: [10, 100, 50, 70, 80, 30, 40],
+        name: "Phone",
+        data: [31, 40, 28, 51, 42, 109],
       },
     ],
   },
@@ -86,3 +70,54 @@ export const UpdatesData = [
     time: "2 hours ago",
   },
 ];
+
+export const DataUnbanExample =[
+  {
+    id:1,
+    phoneNumber: "0902103242",
+    averageCall: 1320,
+    totalReport: 59
+  },
+  {
+    id:2,
+    phoneNumber: "0922106282",
+    averageCall: 1320,
+    totalReport: 59
+  },
+  {
+    id:3,
+    phoneNumber: "0882103242",
+    averageCall: 1090,
+    totalReport: 59
+  },
+  {
+    id:4,
+    phoneNumber: "0902103266",
+    averageCall: 1470,
+    totalReport: 25
+  },
+  {
+    id:5,
+    phoneNumber: "0322743242",
+    averageCall: 1300,
+    totalReport: 51
+  },
+  {
+    id:6,
+    phoneNumber: "0322749332",
+    averageCall: 1620,
+    totalReport: 52
+  },
+  {
+    id:7,
+    phoneNumber: "0552773242",
+    averageCall: 1520,
+    totalReport: 53
+  },
+  {
+    id:8,
+    phoneNumber: "0322755242",
+    averageCall: 1321,
+    totalReport: 50
+  }
+]

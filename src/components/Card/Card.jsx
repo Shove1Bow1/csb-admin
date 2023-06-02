@@ -13,9 +13,12 @@ const Card = (props) => {
   return (
     <AnimateSharedLayout>
       {expanded ? (
-        <div></div>
+        <>
+          <CompactCard param={props}/>
+          <ExpandedCard param={props} setExpanded={() => setExpanded(false)} />
+        </>
+
       ) : (
-        // <ExpandedCard param={props} setExpanded={() => setExpanded(false)} />
         <CompactCard param={props} setExpanded={() => setExpanded(true)} />
       )}
     </AnimateSharedLayout>
@@ -33,6 +36,7 @@ function CompactCard({ param, setExpanded }) {
         boxShadow: param.color.boxShadow,
       }}
       layoutId="expandableCard"
+      onClick={setExpanded}
     >
       <div className="radialBar">
         <CircularProgressbar
@@ -44,6 +48,7 @@ function CompactCard({ param, setExpanded }) {
       <div className="detail">
         <Png />
         <span>{param.value}</span>
+        <span>Last 6 month</span>
       </div>
     </motion.div>
   );
@@ -90,13 +95,12 @@ function ExpandedCard({ param, setExpanded }) {
       xaxis: {
         type: "datetime",
         categories: [
-          "2018-09-19T00:00:00.000Z",
-          "2018-09-19T01:30:00.000Z",
-          "2018-09-19T02:30:00.000Z",
-          "2018-09-19T03:30:00.000Z",
-          "2018-09-19T04:30:00.000Z",
-          "2018-09-19T05:30:00.000Z",
-          "2018-09-19T06:30:00.000Z",
+          "2022-12-19T01:30:00.000Z",
+          "2023-01-19T02:30:00.000Z",
+          "2023-02-19T03:30:00.000Z",
+          "2023-03-19T04:30:00.000Z",
+          "2023-04-19T05:30:00.000Z",
+          "2023-05-19T06:30:00.000Z",
         ],
       },
     },
@@ -111,14 +115,14 @@ function ExpandedCard({ param, setExpanded }) {
       }}
       layoutId="expandableCard"
     >
-      {/* <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
+      <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
         <UilTimes onClick={setExpanded} />
       </div>
       <span>{param.title}</span>
       <div className="chartContainer">
         <Chart options={data.options} series={param.series} type="area" />
       </div>
-      <span>Last 24 hours</span> */}
+      <span>Last 24 hours</span>
     </motion.div>
   );
 }

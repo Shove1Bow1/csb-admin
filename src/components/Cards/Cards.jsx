@@ -23,7 +23,7 @@ const Cards = () => {
       });
   }, []);
   return (
-    <div className="Cards">
+    <div className="Cards" style={{ marginBottom: "10px" }}>
       {cardsData.map((card, id) => {
         return (
           <div className="parentContainer" key={id}>

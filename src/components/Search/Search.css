@@ -1,14 +1,12 @@
 .MuiTableRow-root > * {
-  padding: 10px;
+  padding: 4px;
 }
 
 .MuiTableRow-root.MuiTableRow-head > * {
   font-weight: bold !important;
 }
 
-.Table {
-  
-}
+
 .Table td,
 th {
   border: none !important;
