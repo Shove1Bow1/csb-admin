@@ -10,6 +10,7 @@ import "./Table.css";
 import axios from "axios";
 import dayjs from "dayjs";
 import { DataUnbanExample } from "../../Data/Data";
+import { cancelAnUnban, getListUnban, unbanANumber } from "../../axios/unban.axios";
 
 function createData(phoneNumber, Id, date) {
   return { phoneNumber, Id, date };
@@ -42,18 +43,25 @@ const makeStyle = (status) => {
 };
 
 export default function BasicTable() {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState();
+  async function acceptUnban(phoneNumber){
+    const newArray=data;
+    const resultUnban=await unbanANumber(phoneNumber);
+    if(resultUnban)
+      setData(newArray.filter((phoneInfo)=>{return phoneInfo.phoneNumber!==phoneNumber;}))
+  }
+  async function cancelUnban(phoneNumber){
+    const newArray=data;
+    const resultCancelAnUnban=await cancelAnUnban(phoneNumber);
+    if(resultCancelAnUnban){
+      setData(newArray.filter((phoneInfo)=>{return phoneInfo.phoneNumber!==phoneNumber;}))
+    }
+  }
   React.useEffect(() => {
-    axios
-      .get(
-        "https://api.call-spam-blocker.xyz/phone-numbers/spammers/top-ten/recent-reports",
-        {
-          headers: { authorization: "spambl0ckerAuthorization2k1rbyp0wer" },
-        }
-      )
-      .then((data) => {
-        setData(data.data.result);
-      });
+    async function getListUnbanFrom() {
+      setData(await getListUnban());
+    }
+    getListUnbanFrom();
   }, []);
   return (
     <div className="Table">
@@ -65,7 +73,7 @@ export default function BasicTable() {
         <Table sx={{ maxWidth: "full" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="center">ID</TableCell>
+              <TableCell align="left">ID</TableCell>
               <TableCell align="center">Phone Number</TableCell>
               <TableCell align="center">Total Reports</TableCell>
               <TableCell align="center">Average Calls</TableCell>
@@ -74,14 +82,14 @@ export default function BasicTable() {
             </TableRow>
           </TableHead>
           <TableBody style={{ color: "white" }}>
-            {DataUnbanExample &&
-              DataUnbanExample.map((row) => {
+            {data ?
+              data.map((row) => {
                 return (
                   <TableRow
                     key={row._id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell align="center">{row.id}</TableCell>
+                    <TableCell align="left">{row._id}</TableCell>
                     <TableCell component="th" scope="row" align="center">
                       {row.phoneNumber}
                     </TableCell>
@@ -89,7 +97,7 @@ export default function BasicTable() {
                       {row.totalReport}
                     </TableCell>
                     <TableCell align="center">
-                      {row.averageCall}
+                      {row.averageCall ? row.averageCall : 0}
                     </TableCell>
                     <TableCell align="center">
                       <span
@@ -103,13 +111,14 @@ export default function BasicTable() {
                       </span>
                     </TableCell>
                     <TableCell align="center" className="Details">
-                    <span
+                      <span
                         className="status"
                         style={{
                           background: "red",
                           color: "white",
-                          margin:"0px 5px"
+                          margin: "0px 5px"
                         }}
+                        onClick={()=>{cancelUnban(row.phoneNumber)}}
                       >
                         Cancel
                       </span>
@@ -119,13 +128,14 @@ export default function BasicTable() {
                           background: "green",
                           color: "white",
                         }}
+                        onClick={()=>{acceptUnban(row.phoneNumber)}}
                       >
                         Unban
                       </span>
                     </TableCell>
                   </TableRow>
                 );
-              })}
+              }) : null}
           </TableBody>
         </Table>
       </TableContainer>

@@ -111,7 +111,7 @@ export default function Search() {
             width: "100%",
             background: "white",
           }}
-          label="Search"
+          label="Search for phone number"
         />
         <Select
           labelId="demo-simple-select-label"
@@ -153,10 +153,10 @@ export default function Search() {
               <TableRow>
                 <TableCell align="left">ID</TableCell>
                 <TableCell>Phone Number</TableCell>
-                <TableCell align="left">Create Date</TableCell>
-                <TableCell align="left">Report</TableCell>
-                <TableCell align="left">Tracked</TableCell>
-                <TableCell align="left">Status</TableCell>
+                <TableCell align="center">Create Date</TableCell>
+                <TableCell align="center">Report</TableCell>
+                <TableCell align="center">Tracked</TableCell>
+                <TableCell align="center">Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody style={{ color: "white" }}>
@@ -182,16 +182,16 @@ export default function Search() {
                         >
                           {row.phoneNumber}
                         </TableCell>
-                        <TableCell align="left">
+                        <TableCell align="center">
                           {dayjs(row.createAt).format("DD-MM-YYYY").toString()}
                         </TableCell>
-                        <TableCell align="left">
+                        <TableCell align="center">
                           {row.reportList.length}
                         </TableCell>
-                        <TableCell align="left">
+                        <TableCell align="center">
                           {row.callTracker.length}
                         </TableCell>
-                        <TableCell align="left">
+                        <TableCell align="center">
                           <span
                             className="status"
                             style={makeStyle(row.status)}

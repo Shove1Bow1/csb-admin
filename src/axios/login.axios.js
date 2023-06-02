@@ -4,7 +4,7 @@ import { redirect } from "react-router-dom";
 
 export async function loginRequest(name, password) {
   const dataServer = await axios.post(
-    "https://api.call-spam-blocker.xyz/admin/login",
+    serverUrl+'/admin/login',
     {
       name,
       password,
