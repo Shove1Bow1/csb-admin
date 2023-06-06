@@ -32,7 +32,7 @@ export const SidebarData = [
 // Analytics Cards Data
 export const cardsData = [
   {
-    title: "6 mounth",
+    title: "6 months",
     color: {
       backGround: "#008b8b",
       boxShadow: "0px 10px 20px 0px #e0c6f5",
@@ -71,53 +71,53 @@ export const UpdatesData = [
   },
 ];
 
-export const DataUnbanExample =[
+export const DataUnbanExample = [
   {
-    id:1,
+    id: 1,
     phoneNumber: "0902103242",
     averageCall: 1320,
-    totalReport: 59
+    totalReport: 59,
   },
   {
-    id:2,
+    id: 2,
     phoneNumber: "0922106282",
     averageCall: 1320,
-    totalReport: 59
+    totalReport: 59,
   },
   {
-    id:3,
+    id: 3,
     phoneNumber: "0882103242",
     averageCall: 1090,
-    totalReport: 59
+    totalReport: 59,
   },
   {
-    id:4,
+    id: 4,
     phoneNumber: "0902103266",
     averageCall: 1470,
-    totalReport: 25
+    totalReport: 25,
   },
   {
-    id:5,
+    id: 5,
     phoneNumber: "0322743242",
     averageCall: 1300,
-    totalReport: 51
+    totalReport: 51,
   },
   {
-    id:6,
+    id: 6,
     phoneNumber: "0322749332",
     averageCall: 1620,
-    totalReport: 52
+    totalReport: 52,
   },
   {
-    id:7,
+    id: 7,
     phoneNumber: "0552773242",
     averageCall: 1520,
-    totalReport: 53
+    totalReport: 53,
   },
   {
-    id:8,
+    id: 8,
     phoneNumber: "0322755242",
     averageCall: 1321,
-    totalReport: 50
-  }
-]
+    totalReport: 50,
+  },
+];
