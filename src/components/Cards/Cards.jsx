@@ -19,7 +19,6 @@ const Cards = () => {
         const count = data.data.result.sixMonth.reduce(
           (a, b) => a.count + b.count
         );
-        console.log(count);
       });
   }, []);
   return (
