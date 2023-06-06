@@ -5,7 +5,11 @@ import {
   validatePassword,
 } from "../../validator/validate-form.login";
 import "./Form.sass";
+import { changeCursor } from "../../utils/mouse-cursor";
+import { useState } from "react";
 export const LoginForm = () => {
+  const [cursor,setCursor]=useState('default')
+  const [serverError,setServerError]=useState("");
   return (
     <Formik
       initialValues={{
@@ -13,13 +17,20 @@ export const LoginForm = () => {
         password: "",
         serverError: "",
       }}
-      onSubmit={(values) => {
+      onSubmit={async (values) => {
         const error =
           validateName(values.name) || validatePassword(values.password);
         if (error) {
           return;
         }
-        const data = loginRequest(values.name, values.password);
+        const data=await loginRequest(values.name, values.password);
+        if(data.token){
+          localStorage.setItem("token", data.token);
+          window.location.replace("/");
+        }else{
+          setServerError(data.error);
+          return;
+        }
       }}
     >
       {({ errors, touched, isValidating, validateForm }) => {
@@ -53,11 +64,11 @@ export const LoginForm = () => {
               {touched.password && errors.password ? errors.password : null}
             </span>
             <span className="formik-error">
-              {touched.serverError && errors.serverError
-                ? errors.serverError
+              {serverError.length
+                ? serverError
                 : null}
             </span>
-            <button className="formik-button" type="submit">
+            <button className="formik-button" style={{cursor:cursor}} type="submit" onMouseEnter={()=>{changeCursor(setCursor);console.log(serverError)}} onMouseLeave={()=>changeCursor(setCursor)}>
               Login
             </button>
           </Form>

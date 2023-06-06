@@ -11,6 +11,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { DataUnbanExample } from "../../Data/Data";
 import { cancelAnUnban, getListUnban, unbanANumber } from "../../axios/unban.axios";
+import { changeCursor } from "../../utils/mouse-cursor";
 
 function createData(phoneNumber, Id, date) {
   return { phoneNumber, Id, date };
@@ -43,6 +44,7 @@ const makeStyle = (status) => {
 };
 
 export default function BasicTable() {
+  const [cursor,setCursor]=React.useState('default')
   const [data, setData] = React.useState();
   async function acceptUnban(phoneNumber){
     const newArray=data;
@@ -116,9 +118,12 @@ export default function BasicTable() {
                         style={{
                           background: "red",
                           color: "white",
-                          margin: "0px 5px"
+                          margin: "0px 5px",
+                          cursor:cursor
                         }}
                         onClick={()=>{cancelUnban(row.phoneNumber)}}
+                        onMouseEnter={()=>{changeCursor(setCursor)}}
+                        onMouseLeave={()=>{changeCursor(setCursor)}}
                       >
                         Cancel
                       </span>
@@ -127,8 +132,11 @@ export default function BasicTable() {
                         style={{
                           background: "green",
                           color: "white",
+                          cursor:cursor
                         }}
                         onClick={()=>{acceptUnban(row.phoneNumber)}}
+                        onMouseEnter={()=>{changeCursor(setCursor)}}
+                        onMouseLeave={()=>{changeCursor(setCursor)}}
                       >
                         Unban
                       </span>
