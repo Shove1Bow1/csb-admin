@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import "./Cards.css";
-import { cardsData } from "../../Data/Data";
-import {
-  UilEstate,
-  UilClipboardAlt,
-  UilUsersAlt,
-  UilPackage,
-  UilPhone,
-  UilSignOutAlt,
-} from "@iconscout/react-unicons";
+import { UilPhone } from "@iconscout/react-unicons";
 import Card from "../Card/Card";
 import axios from "axios";
+import { Fade } from "@mui/material";
 
 const Cards = () => {
   const card = {
@@ -49,23 +42,25 @@ const Cards = () => {
   }, []);
   return (
     <div className="Cards" style={{ marginBottom: "10px" }}>
-      {data && (
+      <Fade in={data ? true : false}>
         <div className="parentContainer">
-          <Card
-            title={card.title}
-            color={card.color}
-            barValue={((data.total / data.allNumbers) * 100).toFixed(2)}
-            value={data.total}
-            png={card.png}
-            series={[
-              {
-                name: "Phone",
-                data: data.value,
-              },
-            ]}
-          />
+          {data && (
+            <Card
+              title={card.title}
+              color={card.color}
+              barValue={((data.total / data.allNumbers) * 100).toFixed(2)}
+              value={data.total}
+              png={card.png}
+              series={[
+                {
+                  name: "Phone",
+                  data: data.value,
+                },
+              ]}
+            />
+          )}
         </div>
-      )}
+      </Fade>
     </div>
   );
 };

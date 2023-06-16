@@ -1,5 +1,4 @@
 import {
-  Autocomplete,
   Button,
   MenuItem,
   Select,
@@ -14,7 +13,6 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import Export from "@iconscout/react-unicons/icons/uil-import";
-import Close from "@iconscout/react-unicons/icons/uil-multiply";
 
 import "./Search.css";
 import TableCell from "@mui/material/TableCell";
@@ -48,21 +46,16 @@ const makeStyle = (status) => {
 export default function Search() {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const rowsPerPage = 10;
+  const rowsPerPage = 12;
 
   const [valueStatus, setValueStatus] = useState(3);
-  const [showHideModal, setShowHideModal] = React.useState(null);
-
-  const [loading, setLoading] = useState(false);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
   const fetchData = (value) => {
-    setLoading(false);
     if (value === "") value = 0;
-
     axios
       .get(
         "https://api.call-spam-blocker.xyz/phone-numbers/" +
@@ -77,7 +70,7 @@ export default function Search() {
         setData(data.data.result);
       });
   };
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleInputChange = React.useCallback(
     debounce((nextValue) => fetchData(nextValue), 1000),
     []
@@ -99,9 +92,12 @@ export default function Search() {
 
   React.useEffect(() => {
     fetchData(0);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
+      <h3 style={{ paddingTop: "16px" }}>Phone Numbers</h3>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <TextField
           onChange={(e) => handleInputChange(e.target.value)}
@@ -148,7 +144,10 @@ export default function Search() {
           component={Paper}
           style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
         >
-          <Table sx={{ minWidth: 650, maxHeight: 0 }} aria-label="simple table">
+          <Table
+            sx={{ minWidth: 650, maxHeight: 0, height: "100%" }}
+            aria-label="simple table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell align="left">ID</TableCell>
@@ -173,9 +172,6 @@ export default function Search() {
                       >
                         <TableCell align="left">{row._id}</TableCell>
                         <TableCell
-                          onClick={() => {
-                            setShowHideModal(index + 1);
-                          }}
                           component="th"
                           scope="row"
                           className="Details"
