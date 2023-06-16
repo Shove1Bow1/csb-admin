@@ -35,7 +35,6 @@ export function HomePage() {
     <div className="AppGlass">
       <Sidebar selected={selected} setSelected={setSelectedItem} />
       <MainDash selected={selected} />
-      {/* <RightSide /> */}{" "}
     </div>
   );
 }
