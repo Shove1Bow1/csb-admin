@@ -21,7 +21,7 @@ export const SidebarData = [
   },
   {
     icon: UilPhone,
-    heading: "PhoneNumber",
+    heading: "Phone number",
   },
   {
     icon: UilClipboardAlt,

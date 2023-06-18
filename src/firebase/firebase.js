@@ -8,17 +8,16 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+  databaseURL:process.env.REACT_APP_DATABASE_URL
 };
 
 const app = initializeApp(
-  firebaseConfig,
-  "https://blockhone-d9932.asia-southeast1.firebasedatabase.app/ "
+  firebaseConfig
 );
 
 // Initialize Realtime Database and get a reference to the service
 const dbthongke = getDatabase(
-  app,
-  "https://callspamblocker-91a96-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  app
 );
 
 const database = getDatabase(app);
