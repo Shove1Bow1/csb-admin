@@ -27,8 +27,6 @@ function NumberOfSearch(props) {
       const data = snapshot.val();
       if (data) {
         setNumberReport(data);
-      } else {
-        console.log("not data");
       }
     });
   }, []);
@@ -38,7 +36,7 @@ function NumberOfSearch(props) {
       style={{
         borderWidth: "1px",
         borderRadius: "12px",
-        width: "500px",
+        width: "700px",
         height: "100px",
         textAlign: "center",
         marginTop: "20px",
@@ -47,7 +45,7 @@ function NumberOfSearch(props) {
       }}
     >
       <h3 style={{ fontWeight: "600", color: "#008b8b" }}>
-        Number Search in {mouth[dayjs().month()]}
+        Search in {mouth[dayjs().month()]}
       </h3>
       <h2>{numberReport}</h2>
     </div>

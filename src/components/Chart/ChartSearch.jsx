@@ -5,17 +5,18 @@ import { dbthongke } from "../../firebase/firebase";
 
 export default function ChartSearch() {
   const dbRef = ref(dbthongke);
+  console.log(dbRef);
   const [dataChart, setDataChart] = useState(null);
   useEffect(() => {
     get(child(dbRef, `Search`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          const dataChart = snapshot.val();
+          const snapData = snapshot.val();
           setDataChart({
             series: [
               {
                 name: "Times",
-                data: Object.values(dataChart),
+                data: Object.values(snapData),
               },
             ],
             options: {
@@ -43,19 +44,17 @@ export default function ChartSearch() {
                 },
               },
               xaxis: {
-                categories: Object.keys(dataChart),
+                categories: Object.keys(snapData),
               },
             },
           });
-        } else {
-          console.log("No data available");
         }
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
-
+  console.log("hello",dataChart?dataChart.series[0].data.reverse():null)
   return (
     <div id="chart">
       {dataChart && (
@@ -63,7 +62,7 @@ export default function ChartSearch() {
           options={dataChart.options}
           series={dataChart.series}
           type="line"
-          width={500}
+          width={700}
           height={500}
         />
       )}

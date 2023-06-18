@@ -10,7 +10,6 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-console.log(process.env.REACT_APP_API_KEY);
 const app = initializeApp(
   firebaseConfig,
   "https://blockhone-d9932.asia-southeast1.firebasedatabase.app/ "

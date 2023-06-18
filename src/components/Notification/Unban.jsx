@@ -22,7 +22,7 @@ export default function Unban() {
   const unban = useSelector((state) => state.unban.value);
   return (
     <div className="Table">
-      <h3>Unban</h3>
+      <h3>Unban List</h3>
       <TableContainer
         component={Paper}
         style={{ boxShadow: "0px 13px 20px 0px #80808029" }}

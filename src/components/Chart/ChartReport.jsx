@@ -47,13 +47,8 @@ export default function ChartReport() {
               },
             },
           });
-        } else {
-          console.log("No data available");
         }
       })
-      .catch((error) => {
-        console.error(error);
-      });
   }, []);
 
   return (
@@ -63,7 +58,7 @@ export default function ChartReport() {
           options={dataChart.options}
           series={dataChart.series}
           type="line"
-          width={500}
+          width={700}
           height={500}
         />
       )}

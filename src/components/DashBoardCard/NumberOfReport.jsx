@@ -25,12 +25,9 @@ function NumberOfReport(props) {
 
     onValue(Ref, (snapshot) => {
       const data = snapshot.val();
-      console.log(data);
       if (data) {
         setNumberReport(data);
-      } else {
-        console.log("not data");
-      }
+      } 
     });
   }, []);
 
@@ -39,7 +36,7 @@ function NumberOfReport(props) {
       style={{
         borderWidth: "1px",
         borderRadius: "12px",
-        width: "500px",
+        width: "700px",
         height: "100px",
         textAlign: "center",
         marginTop: "20px",
@@ -48,7 +45,7 @@ function NumberOfReport(props) {
       }}
     >
       <h3 style={{ fontWeight: "600", color: "#008b8b" }}>
-        Number Report in {mouth[dayjs().month()]}
+        Total reports in {mouth[dayjs().month()]}
       </h3>
       <h2>{numberReport}</h2>
     </div>

@@ -107,7 +107,7 @@ export default function Search() {
             width: "100%",
             background: "white",
           }}
-          label="Search for phone number"
+          label="Search a phone number"
         />
         <Select
           labelId="demo-simple-select-label"
