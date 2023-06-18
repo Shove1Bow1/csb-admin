@@ -20,5 +20,5 @@ const dbthongke = getDatabase(
   app
 );
 
-const database = getDatabase(app);
+const database = getDatabase(app,process.env.REACT_APP_DATABASE_URL_SECOND);
 export { database, dbthongke };
