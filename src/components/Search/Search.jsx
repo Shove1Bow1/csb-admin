@@ -133,7 +133,7 @@ export default function Search() {
         <CSVLink
           data={exportData}
           style={{ heigth: "200px" }}
-          filename="ExportPhoneNumber"
+          filename="phone-numbers"
         >
           <Button
             variant="outlined"
@@ -155,8 +155,8 @@ export default function Search() {
               <TableRow>
                 <TableCell align="left">ID</TableCell>
                 <TableCell>Phone Number</TableCell>
-                <TableCell align="center">Create Date</TableCell>
-                <TableCell align="center">Report</TableCell>
+                <TableCell align="center">Created Date</TableCell>
+                <TableCell align="center">Reports</TableCell>
                 <TableCell align="center">Tracked</TableCell>
                 <TableCell align="center">Status</TableCell>
               </TableRow>
