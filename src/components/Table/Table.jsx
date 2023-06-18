@@ -17,46 +17,28 @@ function createData(phoneNumber, Id, date) {
   return { phoneNumber, Id, date };
 }
 
-const rows = [
-  createData("Lasania Chiken Fri", 18908424, "2 March 2022", "Approved"),
-  createData("Big Baza Bang ", 18908424, "2 March 2022", "Pending"),
-  createData("Mouth Freshner", 18908424, "2 March 2022", "Approved"),
-  createData("Cupcake", 18908421, "2 March 2022", "Delivered"),
-];
-
-const makeStyle = (status) => {
-  if (status === "Approved") {
-    return {
-      background: "rgb(145 254 159 / 47%)",
-      color: "green",
-    };
-  } else if (status === "Pending") {
-    return {
-      background: "#ffadad8f",
-      color: "red",
-    };
-  } else {
-    return {
-      background: "#59bfff",
-      color: "white",
-    };
-  }
-};
-
 export default function BasicTable() {
   const [cursor,setCursor]=React.useState('default')
   const [data, setData] = React.useState();
-  async function acceptUnban(phoneNumber){
-    const newArray=data;
-    const resultUnban=await unbanANumber(phoneNumber);
-    if(resultUnban)
-      setData(newArray.filter((phoneInfo)=>{return phoneInfo.phoneNumber!==phoneNumber;}))
+  async function acceptUnban(phoneNumber) {
+    const newArray = data;
+    const resultUnban = await unbanANumber(phoneNumber);
+    if (resultUnban)
+      setData(
+        newArray.filter((phoneInfo) => {
+          return phoneInfo.phoneNumber !== phoneNumber;
+        })
+      );
   }
-  async function cancelUnban(phoneNumber){
-    const newArray=data;
-    const resultCancelAnUnban=await cancelAnUnban(phoneNumber);
-    if(resultCancelAnUnban){
-      setData(newArray.filter((phoneInfo)=>{return phoneInfo.phoneNumber!==phoneNumber;}))
+  async function cancelUnban(phoneNumber) {
+    const newArray = data;
+    const resultCancelAnUnban = await cancelAnUnban(phoneNumber);
+    if (resultCancelAnUnban) {
+      setData(
+        newArray.filter((phoneInfo) => {
+          return phoneInfo.phoneNumber !== phoneNumber;
+        })
+      );
     }
   }
   React.useEffect(() => {
