@@ -2,15 +2,11 @@
 import {
   UilEstate,
   UilClipboardAlt,
-  UilUsersAlt,
-  UilPackage,
   UilPhone,
-  UilSignOutAlt,
+  UilBell,
 } from "@iconscout/react-unicons";
 
 // Analytics Cards imports
-import { UilUsdSquare, UilMoneyWithdrawal } from "@iconscout/react-unicons";
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
 // Recent Card Imports
 import img1 from "../imgs/img1.png";
@@ -24,8 +20,16 @@ export const SidebarData = [
     heading: "Dashboard",
   },
   {
+    icon: UilPhone,
+    heading: "PhoneNumber",
+  },
+  {
     icon: UilClipboardAlt,
     heading: "Unban List",
+  },
+  {
+    icon: UilBell,
+    heading: "Notification",
   },
 ];
 
