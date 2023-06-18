@@ -20,6 +20,8 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 import dayjs from "dayjs";
 import { CSVLink } from "react-csv";
+import { serverUrl } from "../../constant/server.constant";
+import { tokenApp } from "../../constant/server.constant";
 
 const makeStyle = (status) => {
   if (status === "unknown") {
@@ -58,12 +60,12 @@ export default function Search() {
     if (value === "") value = 0;
     axios
       .get(
-        "https://api.call-spam-blocker.xyz/phone-numbers/" +
+        serverUrl+'/phone-numbers/' +
           value +
           "/suggest/" +
           valueStatus,
         {
-          headers: { authorization: "spambl0ckerAuthorization2k1rbyp0wer" },
+          headers: { authorization: tokenApp },
         }
       )
       .then((data) => {
@@ -209,165 +211,6 @@ export default function Search() {
           />
         </TableContainer>
       </div>
-      {/* {showHideModal && (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            backgroundColor: "rgb(128,128,128,0.5)",
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          <div
-            style={{
-              position: "relative",
-              left: "50%",
-              top: "50%",
-              transform: "translate(-50%,-50%)",
-              borderRadius: 12,
-              width: 400,
-              height: 500,
-              overflow: "auto",
-              backgroundColor: "whitesmoke",
-              opacity: 1,
-              zIndex: 1,
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                right: 5,
-                top: 5,
-                cursor: "pointer",
-              }}
-              onClick={() => setShowHideModal(null)}
-            >
-              <Close />
-            </div>
-            <div
-              style={{
-                textAlign: "center",
-              }}
-            >
-              <p style={{ paddingTop: 15, fontSize: 20, fontWeight: 700 }}>
-                Phone Number
-                <p style={{ fontSize: 18, fontWeight: 500, lineHeight: 0 }}>
-                  {data[showHideModal].phoneNumber}
-                </p>
-              </p>
-              <p style={{ fontSize: 20, fontWeight: 700 }}>
-                Status
-                <p
-                  className="status"
-                  style={{
-                    ...makeStyle(data[showHideModal - 1].status),
-                    marginTop: 5,
-                    marginLeft: 50,
-                    marginRight: 50,
-                  }}
-                >
-                  {data[showHideModal - 1].status}
-                </p>
-              </p>
-              <p style={{ fontSize: 20, fontWeight: 700 }}>
-                Report
-                {data[showHideModal - 1].reportList.map((report, index) => (
-                  <div
-                    key={report._id}
-                    style={{
-                      marginTop: 5,
-                      marginLeft: 50,
-                      marginRight: 50,
-                    }}
-                  >
-                    <hr />
-                    <div
-                      style={{
-                        fontSize: 18,
-                        fontWeight: 500,
-                        display: "flex",
-                        flexFlow: "row",
-                      }}
-                    >
-                      <p
-                        style={{
-                          width: "35%",
-                          textAlign: "left",
-                        }}
-                      >
-                        Title:
-                      </p>
-                      <p
-                        style={{
-                          width: "65%",
-                          color: "red",
-                          textAlign: "left",
-                        }}
-                      >
-                        {report.title}
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 18,
-                        fontWeight: 500,
-                        display: "flex",
-                        flexFlow: "row",
-                      }}
-                    >
-                      <p
-                        style={{
-                          textAlign: "left",
-                        }}
-                      >
-                        Decription:
-                      </p>
-                      <p
-                        style={{
-                          color: "red",
-                          textAlign: "left",
-                        }}
-                      >
-                        {report.content}
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 18,
-                        fontWeight: 500,
-                        display: "flex",
-                        flexFlow: "row",
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: "35%",
-                          textAlign: "left",
-                        }}
-                      >
-                        Date:
-                      </span>
-                      <p
-                        style={{
-                          width: "65%",
-                          color: "red",
-                          textAlign: "left",
-                        }}
-                      >
-                        {dayjs(report.reportDate)
-                          .format("DD-MM-YYYY")
-                          .toString()}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </p>
-            </div>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }
