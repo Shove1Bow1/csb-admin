@@ -54,16 +54,16 @@ export default function ChartSearch() {
         console.error(error);
       });
   }, []);
-  console.log("hello",dataChart?dataChart.series[0].data.reverse():null)
+  console.log("hello", dataChart ? dataChart.series[0].data.reverse() : null);
   return (
-    <div id="chart">
+    <div id="chart" className="w-[48%]">
       {dataChart && (
         <ReactApexChart
           options={dataChart.options}
           series={dataChart.series}
           type="line"
-          width={700}
-          height={500}
+          width={"100%"}
+          height={400}
         />
       )}
     </div>
