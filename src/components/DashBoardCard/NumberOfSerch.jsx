@@ -36,8 +36,8 @@ function NumberOfSearch(props) {
       style={{
         borderWidth: "1px",
         borderRadius: "12px",
-        width: "700px",
-        height: "100px",
+        width: "48%",
+        height: "80px",
         textAlign: "center",
         marginTop: "20px",
         marginBottom: "20px",
@@ -47,7 +47,7 @@ function NumberOfSearch(props) {
       <h3 style={{ fontWeight: "600", color: "#008b8b" }}>
         Search in {mouth[dayjs().month()]}
       </h3>
-      <h2>{numberReport}</h2>
+      <div className="text-[40px] font-bold">{numberReport}</div>
     </div>
   );
 }

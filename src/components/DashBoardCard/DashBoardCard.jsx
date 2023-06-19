@@ -4,6 +4,7 @@ import { onValue, ref } from "firebase/database";
 import dayjs from "dayjs";
 import NumberOfReport from "./NumberOfReport";
 import NumberOfSearch from "./NumberOfSerch";
+import DashBoardThongSo from "./DashBoardThongSo";
 
 function DashBoardCard(props) {
   return (

@@ -6,6 +6,7 @@ import Search from "../Search/Search";
 import NotificationTable from "../Notification/Notification";
 import Chart from "../Chart/Chart";
 import DashBoardCard from "../DashBoardCard/DashBoardCard";
+import DashBoardThongSo from "../DashBoardCard/DashBoardThongSo";
 const MainDash = (props) => {
   const { selected } = props;
   return (
@@ -13,6 +14,8 @@ const MainDash = (props) => {
       {selected === 0 && (
         <>
           <Cards />
+          <DashBoardThongSo />
+
           <DashBoardCard />
           <Chart />
         </>
