@@ -12,7 +12,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-console.log(process.env.REACT_APP_DATABASE_URL_SECOND);
 // Initialize Realtime Database and get a reference to the service
 const dbthongke = getDatabase(app);
 

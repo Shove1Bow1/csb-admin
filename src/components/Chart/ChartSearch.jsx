@@ -5,7 +5,6 @@ import { dbthongke } from "../../firebase/firebase";
 
 export default function ChartSearch() {
   const dbRef = ref(dbthongke);
-  console.log(dbRef);
   const [dataChart, setDataChart] = useState(null);
   useEffect(() => {
     get(child(dbRef, `Search`))
@@ -50,11 +49,7 @@ export default function ChartSearch() {
           });
         }
       })
-      .catch((error) => {
-        console.error(error);
-      });
   }, []);
-  console.log("hello", dataChart ? dataChart.series[0].data.reverse() : null);
   return (
     <div id="chart" className="w-[48%]">
       {dataChart && (

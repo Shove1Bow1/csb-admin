@@ -68,7 +68,7 @@ export const LoginForm = () => {
                 ? serverError
                 : null}
             </span>
-            <button className="formik-button" style={{cursor:cursor}} type="submit" onMouseEnter={()=>{changeCursor(setCursor);console.log(serverError)}} onMouseLeave={()=>changeCursor(setCursor)}>
+            <button className="formik-button" style={{cursor:cursor}} type="submit" onMouseEnter={()=>{changeCursor(setCursor);}} onMouseLeave={()=>changeCursor(setCursor)}>
               Login
             </button>
           </Form>

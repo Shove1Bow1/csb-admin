@@ -31,19 +31,14 @@ function DashBoardThongSo(props) {
             percentPotential: (valueTotal.TotalPotential / totalNumber) * 100,
             percentUnknow: (valueTotal.TotalUnknow / totalNumber) * 100,
           });
-        } else {
-          console.log("No data available");
         }
       })
-      .catch((error) => {
-        console.error(error);
-      });
   }, []);
 
   return (
     data && (
       <div className="w-full h-[100px] flex flex-row p-[15px] justify-between mt-[20px] rounded-2xl bg-[white]">
-        {console.log(data)}
+
         <div className="text-center">
           <p className="text-[30px] font-bold">
             {formatCompactNumber(data.TotalNumber)}
