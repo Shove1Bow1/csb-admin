@@ -8,12 +8,11 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
-  databaseURL: process.env.REACT_APP_DATABASE_URL_SECOND,
 };
 
 const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database and get a reference to the service
-const dbthongke = getDatabase(app);
+const dbthongke = getDatabase(app,process.env.REACT_APP_DATABASE_URL_SECOND);
 
 const database = getDatabase(app, process.env.REACT_APP_DATABASE_URL);
 export { database, dbthongke };
